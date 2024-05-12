@@ -42,7 +42,7 @@ public final class OcrV3MultiThreadRecExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("src/test/resources/2.jpg");
+        Path imageFile = Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/src/test/resources/2.jpg");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 并发线程数，最大上限为 CPU 核数
         // Concurrent threads, with a maximum limit of CPU cores
@@ -111,7 +111,7 @@ public final class OcrV3MultiThreadRecExample {
 
             Mat image2Mat = OpenCVUtils.image2Mat(bufferedImage);
             image = ImageFactory.getInstance().fromImage(image2Mat);
-            ImageUtils.saveImage(image, "mul_ocr_result.png", "build/output");
+            ImageUtils.saveImage(image, "mul_ocr_result.png", "1_image_sdks/ocr_sdks/ocr_v3_sdk/build/output");
 
             wrappedImage.release();
             image2Mat.release();

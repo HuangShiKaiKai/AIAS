@@ -50,7 +50,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv3_rec_infer_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/ch_PP-OCRv3_rec_infer_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator(new ConcurrentHashMap<String, String>()))
                         .build();
@@ -67,7 +67,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/chinese_cht_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/chinese_cht_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator(new ConcurrentHashMap<String, String>()))
                         .build();
@@ -84,7 +84,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/en_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/en_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -101,7 +101,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/korean_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/korean_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -118,7 +118,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/japan_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/japan_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -136,7 +136,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/ta_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/ta_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -153,7 +153,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/te_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/te_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -170,7 +170,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/ka_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/ka_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -190,7 +190,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/arabic_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/arabic_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -215,7 +215,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/cyrillic_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/cyrillic_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
@@ -238,7 +238,7 @@ public final class OcrV3Recognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/devanagari_PP-OCRv3_rec_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/devanagari_PP-OCRv3_rec_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();

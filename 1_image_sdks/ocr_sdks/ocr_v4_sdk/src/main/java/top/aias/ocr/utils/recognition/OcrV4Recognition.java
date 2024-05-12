@@ -50,7 +50,7 @@ public final class OcrV4Recognition {
                         .optEngine("OnnxRuntime")
 //                        .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv4_rec_infer/inference.onnx"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v4_sdk/models/ch_PP-OCRv4_rec_infer/inference.onnx"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator(new ConcurrentHashMap<String, String>()))
                         .build();

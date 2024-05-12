@@ -32,7 +32,7 @@ public final class OcrV3Detection {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, NDList.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv3_det_infer_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/ch_PP-OCRv3_det_infer_onnx.zip"))
                         .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
@@ -50,7 +50,7 @@ public final class OcrV3Detection {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, NDList.class)
-                        .optModelPath(Paths.get("models/en_PP-OCRv3_det_infer_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/en_PP-OCRv3_det_infer_onnx.zip"))
                         .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
@@ -68,7 +68,7 @@ public final class OcrV3Detection {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, NDList.class)
-                        .optModelPath(Paths.get("models/Multilingual_PP-OCRv3_det_infer_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/Multilingual_PP-OCRv3_det_infer_onnx.zip"))
                         .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();

@@ -35,7 +35,7 @@ public final class OcrV4DetExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("src/test/resources/2.jpg");
+        Path imageFile = Paths.get("1_image_sdks/ocr_sdks/ocr_v4_sdk/src/test/resources/2.jpg");
         Image image = OpenCVImageFactory.getInstance().fromFile(imageFile);
 
         OcrV4Detection detection = new OcrV4Detection();
@@ -51,7 +51,7 @@ public final class OcrV4DetExample {
             for (int i = 0; i < dt_boxes.size(); i++) {
                 ImageUtils.drawRect((Mat) image.getWrappedImage(), dt_boxes.get(i));
             }
-            ImageUtils.saveImage(image, "detect_rect.png", "build/output");
+            ImageUtils.saveImage(image, "detect_rect.png", "1_image_sdks/ocr_sdks/ocr_v4_sdk/build/output");
             ((Mat) image.getWrappedImage()).release();
         }
     }
