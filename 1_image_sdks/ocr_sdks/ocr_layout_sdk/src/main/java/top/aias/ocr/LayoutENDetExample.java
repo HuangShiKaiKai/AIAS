@@ -33,7 +33,7 @@ public final class LayoutENDetExample {
   private LayoutENDetExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/1.png");
+    Path imageFile = Paths.get("C:\\Users\\29085\\Desktop\\22.jpg");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
 
     LayoutDetection detection = new LayoutDetection();
@@ -48,7 +48,7 @@ public final class LayoutENDetExample {
       }
 
       ImageUtils.saveBoundingBoxImage(
-          image, detections, "en_layout_detect_result.png", "build/output");
+          image, detections, "en_layout_detect_result.png", "1_image_sdks/ocr_sdks/ocr_layout_sdk/build/output");
       logger.info("{}", detections);
     }
   }

@@ -51,26 +51,43 @@ public final class OcrV3MultiThreadRecognition {
      * @return
      * @throws TranslateException
      */
+    /**
+     * 使用给定的检测模型和识别模型，对输入图像进行物体检测和识别，返回旋转框的结果列表。
+     *
+     * @param manager NDManager，用于管理计算资源和内存。
+     * @param image 输入的图像对象。
+     * @param recognitionModel 识别模型，用于对检测到的物体进行识别。
+     * @param detector 检测模型，用于检测图像中的物体并返回其边界框。
+     * @param threadNum 使用的线程数量，用于并行处理图像识别。
+     * @return 返回一个包含识别结果的旋转框列表。
+     * @throws TranslateException 如果处理过程中发生错误，则抛出异常。
+     */
     public List<RotatedBox> predict(
             NDManager manager, Image image, ZooModel recognitionModel, Predictor<Image, NDList> detector, int threadNum)
             throws TranslateException {
+        // 使用检测模型预测图像中的物体边界框
         NDList boxes = detector.predict(image);
-        // 交给 NDManager自动管理内存
-        // attach to manager for automatic memory management
+        // 将预测结果绑定到NDManager上，自动管理内存
         boxes.attach(manager);
 
+        // 创建一个并发队列，用于存储图像信息
         ConcurrentLinkedQueue<ImageInfo> queue = new ConcurrentLinkedQueue<>();
         for (int i = 0; i < boxes.size(); i++) {
 
             NDArray box = boxes.get(i);
 
+            // 从边界框数组中提取四个点的坐标
             float[] pointsArr = box.toFloatArray();
             float[] lt = java.util.Arrays.copyOfRange(pointsArr, 0, 2);
             float[] rt = java.util.Arrays.copyOfRange(pointsArr, 2, 4);
             float[] rb = java.util.Arrays.copyOfRange(pointsArr, 4, 6);
             float[] lb = java.util.Arrays.copyOfRange(pointsArr, 6, 8);
+
+            // 计算裁剪图像的宽高
             int img_crop_width = (int) Math.max(distance(lt, rt), distance(rb, lb));
             int img_crop_height = (int) Math.max(distance(lt, lb), distance(rt, rb));
+
+            // 计算图像的四个裁剪点
             List<Point> srcPoints = new ArrayList<>();
             srcPoints.add(new Point(lt[0], lt[1]));
             srcPoints.add(new Point(rt[0], rt[1]));
@@ -82,24 +99,24 @@ public final class OcrV3MultiThreadRecognition {
             dstPoints.add(new Point(img_crop_width, img_crop_height));
             dstPoints.add(new Point(0, img_crop_height));
 
+            // 进行透视变换，将图像裁剪成正方形
             Mat srcPoint2f = NDArrayUtils.toMat(srcPoints);
             Mat dstPoint2f = NDArrayUtils.toMat(dstPoints);
-
             Mat cvMat = OpenCVUtils.perspectiveTransform((Mat) image.getWrappedImage(), srcPoint2f, dstPoint2f);
-
             Image subImg = OpenCVImageFactory.getInstance().fromImage(cvMat);
-//            ImageUtils.saveImage(subImg, i + ".png", "build/output");
 
+            // 调整图像方向，以适应高度大于宽度的情况
             subImg = subImg.getSubImage(0, 0, img_crop_width, img_crop_height);
             if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
                 subImg = rotateImg(manager, subImg);
             }
 
-
+            // 创建图像信息对象，并加入队列
             ImageInfo imageInfo = new ImageInfo(subImg, box);
             queue.add(imageInfo);
         }
 
+        // 使用线程池并行处理图像识别
         List<InferCallable> callables = new ArrayList<>(threadNum);
         for (int i = 0; i < threadNum; i++) {
             callables.add(new InferCallable(recognitionModel, queue));
@@ -108,11 +125,13 @@ public final class OcrV3MultiThreadRecognition {
         ExecutorService es = Executors.newFixedThreadPool(threadNum);
         List<ImageInfo> resultList = new ArrayList<>();
         try {
+            // 提交所有任务并收集结果
             List<Future<List<ImageInfo>>> futures = new ArrayList<>();
             for (InferCallable callable : callables) {
                 futures.add(es.submit(callable));
             }
 
+            // 合并所有子任务的结果
             for (Future<List<ImageInfo>> future : futures) {
                 List<ImageInfo> subList = future.get();
                 if (subList != null) {
@@ -120,6 +139,7 @@ public final class OcrV3MultiThreadRecognition {
                 }
             }
 
+            // 关闭所有可关闭的资源
             for (InferCallable callable : callables) {
                 callable.close();
             }
@@ -129,18 +149,21 @@ public final class OcrV3MultiThreadRecognition {
             es.shutdown();
         }
 
+        // 构建并返回旋转框结果列表
         List<RotatedBox> rotatedBoxes = new ArrayList<>();
         for (ImageInfo imageInfo : resultList) {
             RotatedBox rotatedBox = new RotatedBox(imageInfo.getBox(), imageInfo.getName());
             rotatedBoxes.add(rotatedBox);
 
-            // 不确定是否需要主动释放，nice to have ...
+            // 释放图像资源
             Mat wrappedImage = (Mat) imageInfo.getImage().getWrappedImage();
             wrappedImage.release();
         }
 
         return rotatedBoxes;
     }
+
+
 
     /**
      * 中文检测模型
@@ -153,7 +176,7 @@ public final class OcrV3MultiThreadRecognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, NDList.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv3_det_infer_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/ch_PP-OCRv3_det_infer_onnx.zip"))
                         .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
@@ -174,7 +197,7 @@ public final class OcrV3MultiThreadRecognition {
                         .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv3_rec_infer_onnx.zip"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/models/ch_PP-OCRv3_rec_infer_onnx.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecTranslator(hashMap))
                         .build();

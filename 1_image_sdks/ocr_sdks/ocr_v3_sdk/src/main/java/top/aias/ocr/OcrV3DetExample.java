@@ -47,7 +47,6 @@ public final class OcrV3DetExample {
             // 交给 NDManager自动管理内存
             // attach to manager for automatic memory management
             dt_boxes.attach(manager);
-
             for (int i = 0; i < dt_boxes.size(); i++) {
                 ImageUtils.drawRect((Mat) image.getWrappedImage(), dt_boxes.get(i));
             }

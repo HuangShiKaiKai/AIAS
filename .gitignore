@@ -19,6 +19,9 @@
 1_image_sdks/crowd_sdk/models/
 1_image_sdks/crowd_sdk/target/
 1_image_sdks/crowd_sdk/build/output/
+1_image_sdks/ocr_sdks/ocr_layout_sdk/build/output/
+1_image_sdks/ocr_sdks/ocr_v3_sdk/build/output/
+1_image_sdks/ocr_sdks/ocr_v4_sdk/build/output/
 
 *.imi
 **/target/

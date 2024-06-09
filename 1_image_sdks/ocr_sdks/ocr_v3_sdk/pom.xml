@@ -120,7 +120,19 @@
             <version>${djl.version}</version>
             <scope>runtime</scope>
         </dependency>
-
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-native-cpu</artifactId>
+            <classifier>win-x86_64</classifier>
+            <scope>runtime</scope>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-jni</artifactId>
+            <version>2.1.1-0.27.0</version>
+            <scope>runtime</scope>
+        </dependency>
         <!-- ONNX -->
         <dependency>
             <groupId>ai.djl.onnxruntime</groupId>
@@ -129,15 +141,17 @@
         </dependency>
 
         <!-- PaddlePaddle 表格识别，不支持onnx转换，所以仍然使用 paddle格式-->
+<!--        <dependency>-->
+<!--            <groupId>ai.djl.paddlepaddle</groupId>-->
+<!--            <artifactId>paddlepaddle-engine</artifactId>-->
+<!--            <version>${djl.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-model-zoo</artifactId>
-            <version>${djl.version}</version>
+            <artifactId>paddlepaddle-native-cpu</artifactId>
+            <classifier>win-x86_64</classifier>
+            <version>2.2.2</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>

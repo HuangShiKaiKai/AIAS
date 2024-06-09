@@ -4,6 +4,7 @@ import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
+import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
 import ai.djl.repository.zoo.ModelZoo;
@@ -42,7 +43,7 @@ public final class OcrV3MultiThreadRecExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("1_image_sdks/ocr_sdks/ocr_v3_sdk/src/test/resources/2.jpg");
+        Path imageFile = Paths.get("F:\\product\\45169530482845678e6fb6f47ae76661.png");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 并发线程数，最大上限为 CPU 核数
         // Concurrent threads, with a maximum limit of CPU cores
@@ -68,7 +69,15 @@ public final class OcrV3MultiThreadRecExample {
                 initList.add(result);
             }
             Collections.sort(initList);
-
+//            initList.forEach(rotatedBox -> {
+//                float[] box = rotatedBox.getBox().toFloatArray();
+//                String text = rotatedBox.getText();
+//                String lt = "(" + box[0] + "," + box[1] + ")";
+//                String rt = "(" + box[2] + "," + box[3] + ")";
+//                String rb = "(" + box[4] + "," + box[5] + ")";
+//                String lb = "(" + box[6] + "," + box[7] + ")";
+//                System.out.println(text+":"+lt + " " + rt + " " + rb + " " + lb);
+//            });
             List<ArrayList<RotatedBoxCompX>> lines = new ArrayList<>();
             List<RotatedBoxCompX> line = new ArrayList<>();
             RotatedBoxCompX firstBox = new RotatedBoxCompX(initList.get(0).getBox(), initList.get(0).getText());

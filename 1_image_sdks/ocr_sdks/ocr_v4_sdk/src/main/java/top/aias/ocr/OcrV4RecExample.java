@@ -43,7 +43,7 @@ public final class OcrV4RecExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("1_image_sdks/ocr_sdks/ocr_v4_sdk/src/test/resources/1.jpg");
+        Path imageFile = Paths.get("F:\\product\\45169530482845678e6fb6f47ae76661.png");
         Image image = OpenCVImageFactory.getInstance().fromFile(imageFile);
 
         OcrV4Detection detection = new OcrV4Detection();
