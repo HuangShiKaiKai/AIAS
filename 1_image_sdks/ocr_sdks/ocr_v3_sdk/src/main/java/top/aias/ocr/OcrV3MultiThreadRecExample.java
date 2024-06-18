@@ -43,11 +43,12 @@ public final class OcrV3MultiThreadRecExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("F:\\product\\45169530482845678e6fb6f47ae76661.png");
+
+        Path imageFile = Paths.get("C:\\Users\\29085\\Desktop\\1.jpg");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 并发线程数，最大上限为 CPU 核数
         // Concurrent threads, with a maximum limit of CPU cores
-        int threadNum = 4;
+        int threadNum = 16;
 
         OcrV3MultiThreadRecognition recognition = new OcrV3MultiThreadRecognition();
         try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
@@ -69,15 +70,15 @@ public final class OcrV3MultiThreadRecExample {
                 initList.add(result);
             }
             Collections.sort(initList);
-//            initList.forEach(rotatedBox -> {
-//                float[] box = rotatedBox.getBox().toFloatArray();
-//                String text = rotatedBox.getText();
-//                String lt = "(" + box[0] + "," + box[1] + ")";
-//                String rt = "(" + box[2] + "," + box[3] + ")";
-//                String rb = "(" + box[4] + "," + box[5] + ")";
-//                String lb = "(" + box[6] + "," + box[7] + ")";
-//                System.out.println(text+":"+lt + " " + rt + " " + rb + " " + lb);
-//            });
+            initList.forEach(rotatedBox -> {
+                float[] box = rotatedBox.getBox().toFloatArray();
+                String text = rotatedBox.getText();
+                String lt = "(" + box[0] + "," + box[1] + ")";
+                String rt = "(" + box[2] + "," + box[3] + ")";
+                String rb = "(" + box[4] + "," + box[5] + ")";
+                String lb = "(" + box[6] + "," + box[7] + ")";
+                System.out.println(text+":"+lt + " " + rt + " " + rb + " " + lb);
+            });
             List<ArrayList<RotatedBoxCompX>> lines = new ArrayList<>();
             List<RotatedBoxCompX> line = new ArrayList<>();
             RotatedBoxCompX firstBox = new RotatedBoxCompX(initList.get(0).getBox(), initList.get(0).getText());

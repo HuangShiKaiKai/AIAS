@@ -28,8 +28,8 @@ import java.util.Map;
  */
 public class OCRDetectionTranslator implements Translator<Image, NDList> {
     // det_algorithm == "DB"
-    private final float thresh = 0.3f;
-    private final boolean use_dilation = false;
+    private final float thresh = 0.1f;
+    private final boolean use_dilation = true;
     private final String score_mode = "fast";
     private final String box_type = "quad";
 
@@ -55,15 +55,15 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         min_size =
                 arguments.containsKey("min_size")
                         ? Integer.parseInt(arguments.get("min_size").toString())
-                        : 3;
+                        : 1;
         box_thresh =
                 arguments.containsKey("box_thresh")
                         ? Float.parseFloat(arguments.get("box_thresh").toString())
-                        : 0.6f; // 0.5f
+                        : 0.1f; // 0.5f
         unclip_ratio =
                 arguments.containsKey("unclip_ratio")
                         ? Float.parseFloat(arguments.get("unclip_ratio").toString())
-                        : 1.6f;
+                        : 0.1f;
     }
 
     @Override
