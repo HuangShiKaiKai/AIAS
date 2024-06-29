@@ -43,7 +43,7 @@ public final class OcrV3RecExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("C:\\Users\\29085\\Desktop\\1.png");
+        Path imageFile = Paths.get("F:\\PaddleOCR-2.6.0\\images\\1.png");
         Image image = OpenCVImageFactory.getInstance().fromFile(imageFile);
 
         OcrV3Detection detection = new OcrV3Detection();

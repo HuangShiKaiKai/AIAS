@@ -35,7 +35,7 @@ public final class DirectionDetExample {
   private DirectionDetExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/ticket_90.png");
+    Path imageFile = Paths.get("F:\\PaddleOCR-2.6.0\\images\\word_1.jpg");
     Image image = OpenCVImageFactory.getInstance().fromFile(imageFile);
 
 
@@ -54,7 +54,7 @@ public final class DirectionDetExample {
       for (RotatedBox result : detections) {
         ImageUtils.drawRectWithText((Mat) image.getWrappedImage(), result.getBox(), result.getText());
       }
-      ImageUtils.saveImage(image, "cls_detect_result.png", "build/output");
+      ImageUtils.saveImage(image, "cls_detect_result.png", "C:\\Users\\29085\\Desktop\\");
     }
   }
 }

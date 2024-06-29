@@ -33,7 +33,7 @@ public final class OcrV4Detection {
                         .optEngine("OnnxRuntime")
 //                        .optModelName("inference")
                         .setTypes(Image.class, NDList.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv4_det_infer.onnx"))
+                        .optModelPath(Paths.get("1_image_sdks/ocr_sdks/ocr_v4_sdk/models/ch_PP-OCRv4_det_infer.onnx"))
                         .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();

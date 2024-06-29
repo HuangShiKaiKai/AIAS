@@ -30,13 +30,13 @@ public final class RotationExample {
     }
 
     public static void main(String[] args) throws IOException {
-        Path imageFile = Paths.get("src/test/resources/ticket_0.png");
+        Path imageFile = Paths.get("F:\\PaddleOCR-2.6.0\\images\\word_1.jpg");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 逆时针旋转
         // Counterclockwise rotation
         image = ImageUtils.rotateImg(image,1);
 
-        ImageUtils.saveImage(image, "rotated_result.png", "build/output");
+        ImageUtils.saveImage(image, "rotated_result.png", "C:\\Users\\29085\\Desktop\\新建文件夹");
     }
 
 }

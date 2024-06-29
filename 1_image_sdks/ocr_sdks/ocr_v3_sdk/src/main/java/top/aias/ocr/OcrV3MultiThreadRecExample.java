@@ -44,7 +44,7 @@ public final class OcrV3MultiThreadRecExample {
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
 
-        Path imageFile = Paths.get("C:\\Users\\29085\\Desktop\\1.jpg");
+        Path imageFile = Paths.get("F:\\PaddleOCR-2.6.0\\images\\1.png");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 并发线程数，最大上限为 CPU 核数
         // Concurrent threads, with a maximum limit of CPU cores
