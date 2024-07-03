@@ -35,7 +35,7 @@ public final class DirectionDetExample {
   private DirectionDetExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("F:\\PaddleOCR-2.6.0\\images\\word_1.jpg");
+    Path imageFile = Paths.get("F:\\images\\3.png");
     Image image = OpenCVImageFactory.getInstance().fromFile(imageFile);
 
 

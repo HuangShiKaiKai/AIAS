@@ -42,7 +42,7 @@ public final class MultiTableRecExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("src/test/resources/tables.jpeg");
+        Path imageFile = Paths.get("C:\\Users\\29085\\Pictures\\5.png");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         int height = image.getHeight();
         int width = image.getWidth();
